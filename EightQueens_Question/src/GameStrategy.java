@@ -3,15 +3,15 @@ public class GameStrategy {
 	private int numQueens = 0;
 
 	private int getColumn(int cellId) {
-		// WRITE YOUR LOGIC HERE...................................		
-
-		return 0;	// just for the heck of it
+		// WRITE YOUR LOGIC HERE...................................	
+						
+		return cellId%8;	// just for the heck of it
 	}
 	
 	private int getRow(int cellId) {
 		// WRITE YOUR LOGIC HERE....................................
 		
-		return 0;	// just for the heck of it
+		return cellId/8;	// just for the heck of it
 	}
 
 	public boolean isValidPosition(int cellId) {
@@ -27,22 +27,46 @@ public class GameStrategy {
 		
 		/*
 			WRITE YOUR LOGIC HERE...............................
-
 		*/
+		/*for(int k=0;k<8;k++) {
+			for(int m=0;m<8;m++)
+				System.out.print(placedQueens[k][m]+" ");
+			System.out.println("\n");
+		}*/
+			
+		if(numQueens==0) {
+			placedQueens[row][col]=true;
+			numQueens+=1;
+			return true;
+		}
+		for(int i=0;i<8;i++) {
+			if(placedQueens[i][col]==true)
+				return false;
+		}
+		for(int j=0;j<8;j++) {
+			if(placedQueens[row][j]==true)
+				return false;
+		}
+		for(int k=0;k<8;k++) {
+			if(col-k>0 && row-k>0) 
+				if(placedQueens[row-k][col-k]==true)
+					return false;
+			if(col-k>0 && row+k<7) 
+				if(placedQueens[row+k][col-k]==true)
+					return false;
+			if(col+k<7 && row-k>0) 
+				if(placedQueens[row-k][col+k]==true)
+					return false;
+			if(col+k<7 && row+k<7) 
+				if(placedQueens[row+k][col+k]==true)
+					return false;
+			
+			
+		}
+		numQueens+=1;
+		placedQueens[row][col]=true;
+		
 		return isValid;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
